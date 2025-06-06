@@ -90,7 +90,6 @@ autism-prediction/
 
 ## 📌 References
 
-- [Autism Screening Data on UCI ML Repo](https://archive.ics.uci.edu/ml/datasets/Autism+Screening+Adult)
 - [scikit-learn Documentation](https://scikit-learn.org/stable/)
 - [Pickle & Joblib Serialization](https://docs.python.org/3/library/pickle.html)
 - [Streamlit for ML Apps](https://docs.streamlit.io/)
