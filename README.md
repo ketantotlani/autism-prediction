@@ -1,36 +1,50 @@
 # Autism Prediction 🧠🧬
 
-A machine learning–based application that predicts the likelihood of Autism Spectrum Disorder (ASD) based on behavioral and demographic inputs. Built with a streamlined pipeline that includes preprocessing, encoding, model training, and real-time prediction using a saved model and encoders.
+A machine learning–based application that predicts the likelihood of Autism Spectrum Disorder (ASD) in adults based on answers to a screening questionnaire and demographic inputs. This project streamlines data preprocessing, model training, evaluation, and live predictions using saved model pipelines.
 
 ---
 
 ## 🌟 Project Highlights
 
-- **Goal**: Predict autism likelihood using survey and behavioral inputs.
-- **Model**: Supervised ML classifier trained on autism datasets.
-- **Pipeline**: Encodes input features, applies trained model, outputs binary classification.
-- **Deployment Ready**: Serialized with `.pkl` files for model and encoders.
-- **Application**: Can be extended to healthcare assistants, early detection tools, and screening systems.
+- **Goal**: Predict autism tendency using behavioral responses and metadata (age, gender, etc.).
+- **Dataset**: Public dataset with anonymized adult screening data.
+- **Model**: Supervised classification with serialized `.pkl` pipeline.
+- **Use Case**: Early-stage autism screening and decision-support tool.
 
 ---
 
 ## 🧠 Core Components
 
-### 1. Data Pipeline
+### 1. Dataset Overview (`train.csv`)
 
-- **Input Data**: Survey responses + metadata (age, gender, ethnicity, etc.)
+| Feature             | Description                                      |
+|---------------------|--------------------------------------------------|
+| `A1_Score` to `A10_Score` | Responses to 10 binary autism screening questions |
+| `age`               | Age of participant                               |
+| `gender`            | Gender (M/F)                                     |
+| `ethnicity`         | Ethnic background                                |
+| `jaundice`          | Born with jaundice? (`yes`/`no`)                 |
+| `family_mem_with_ASD` | Family history of ASD (`yes`/`no`)            |
+| `used_app_before`   | Previously used autism screening app             |
+| `country_of_res`    | Country of residence                             |
+| `result`            | Screening score                                  |
+| `age_desc`          | Age group description (e.g. ‘Adult’)             |
+| `relation`          | Relation to the respondent (e.g. ‘Parent’)       |
+| `Class/ASD`         | Target label (Yes/No – autism tendency)          |
+
+---
+
+### 2. Model Pipeline
+
 - **Preprocessing**:
-  - Handling missing values
-  - Label encoding and one-hot encoding
-- **Feature Scaling**: StandardScaler for numeric features
-- **Splitting**: Train-test split for evaluation
-
-### 2. Model
-
-- **Model Type**: Random Forest / Logistic Regression (based on final `.pkl`)
-- **Training Metrics**: Accuracy, precision, recall
-- **Cross-validation**: Applied to tune parameters and validate generalization
-- **Output**: Binary class (`Yes` for likely ASD, `No` for unlikely)
+  - Categorical Encoding via `LabelEncoder` or `OneHotEncoder`
+  - Normalization of numeric features
+  - Handling of missing/null values
+- **Model**:
+  - Random Forest Classifier (best performing)
+  - Exported via `joblib` or `pickle` to `best_model.pkl`
+- **Encoders**:
+  - Stored separately in `encoders.pkl` for decoding input features
 
 ---
 
@@ -45,7 +59,7 @@ A machine learning–based application that predicts the likelihood of Autism Sp
 
 > Example Output:
 ```python
-Input: [M, 22, yes, yes, no, yes, no, no, yes, Asia]
+Input: {'gender': 'M', 'age': 24, 'A1_Score': 1, ..., 'used_app_before': 'yes'}
 Prediction: Yes (Likely Autism)
 ```
 
@@ -56,12 +70,13 @@ Prediction: Yes (Likely Autism)
 ```
 autism-prediction/
 │
-├── data/                               # Raw and preprocessed input data (optional)
+├── data/
+│   └── train.csv                     # Dataset used for training
 │
 ├── notebook/
-│   ├── autism_preidiction.ipynb        # Jupyter notebook for training and inference
-│   ├── best_model.pkl                  # Trained ML model
-│   └── encoders.pkl                    # Label encoders for categorical features
+│   ├── autism_preidiction.ipynb     # Full notebook for preprocessing + prediction
+│   ├── best_model.pkl               # Trained and saved classifier
+│   └── encoders.pkl                 # Label encoders used during training
 │
 └── README.md
 ```
@@ -71,25 +86,26 @@ autism-prediction/
 ## 🛠️ Tech Stack
 
 - **Python 3.8+**
-- **scikit-learn** – Model building and evaluation
-- **pandas / NumPy** – Data manipulation
-- **joblib / pickle** – Model and encoder serialization
-- **Matplotlib / Seaborn** – Visualization (optional)
+- **scikit-learn** – Modeling and pipeline creation
+- **pandas / NumPy** – Data wrangling
+- **joblib / pickle** – Model serialization
+- **Matplotlib / Seaborn** – (Optional) data visualization
+- **Jupyter Notebook**
 
 ---
 
 ## 🚀 Future Enhancements
 
-- Deploy as **Flask/FastAPI** REST endpoint for real-time API inference
-- Build a **Streamlit or Gradio** front-end for survey input + prediction
-- Expand dataset with more diverse demographics
-- Integrate explainability tools like **SHAP or LIME**
-- Add **time-series behavioral tracking** for longitudinal predictions
+- Add an **interactive web form** using Streamlit or Gradio
+- Build a **REST API** with Flask/FastAPI for integration
+- Implement **SHAP** or **LIME** for explainable predictions
+- Extend dataset to other age groups (children/teens)
+- Enable multilingual input support for international use
 
 ---
 
 ## 📌 References
 
-- [scikit-learn Documentation](https://scikit-learn.org/stable/)
-- [Pickle & Joblib Serialization](https://docs.python.org/3/library/pickle.html)
-- [Streamlit for ML Apps](https://docs.streamlit.io/)
+- [scikit-learn Documentation](https://scikit-learn.org/)
+- [Streamlit.io](https://streamlit.io/)
+- [LIME for Model Explainability](https://github.com/marcotcr/lime)
