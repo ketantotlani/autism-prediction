@@ -1,10 +1,10 @@
-# Autism Prediction 🧠🧬
+# Autism Prediction 
 
 A machine learning–based application that predicts the likelihood of Autism Spectrum Disorder (ASD) in adults based on answers to a screening questionnaire and demographic inputs. This project streamlines data preprocessing, model training, evaluation, and live predictions using saved model pipelines.
 
 ---
 
-## 🌟 Project Highlights
+##  Project Highlights
 
 - **Goal**: Predict autism tendency using behavioral responses and metadata (age, gender, etc.).
 - **Dataset**: Public dataset with anonymized adult screening data.
@@ -13,7 +13,7 @@ A machine learning–based application that predicts the likelihood of Autism Sp
 
 ---
 
-## 🧠 Core Components
+##  Core Components
 
 ### 1. Dataset Overview (`train.csv`)
 
@@ -48,7 +48,7 @@ A machine learning–based application that predicts the likelihood of Autism Sp
 
 ---
 
-## 📊 Sample Results
+## Sample Results
 
 | Metric        | Value     |
 |---------------|-----------|
@@ -65,7 +65,7 @@ Prediction: Yes (Likely Autism)
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 autism-prediction/
@@ -83,7 +83,7 @@ autism-prediction/
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Python 3.8+**
 - **scikit-learn** – Modeling and pipeline creation
@@ -94,7 +94,7 @@ autism-prediction/
 
 ---
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 - Add an **interactive web form** using Streamlit or Gradio
 - Build a **REST API** with Flask/FastAPI for integration
@@ -104,7 +104,7 @@ autism-prediction/
 
 ---
 
-## 📌 References
+## References
 
 - [scikit-learn Documentation](https://scikit-learn.org/)
 - [Streamlit.io](https://streamlit.io/)
